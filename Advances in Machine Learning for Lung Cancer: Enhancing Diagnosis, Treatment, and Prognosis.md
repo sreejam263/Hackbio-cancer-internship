@@ -5,7 +5,7 @@ Introduction
 
 Lung cancer is a major global health problem characterized by high intra-tumor heterogeneity and drug resistance. Recent advancements in cancer research, including -omics analysis and large-scale databases, have provided valuable insights. Machine learning (ML) has emerged as a powerful tool for analyzing complex biomedical data, aiding in early detection, classification, prognosis prediction, and drug response evaluation. This review provides an overview of ML algorithms used in lung cancer research and highlights the challenges and opportunities for future applications.
 
-!\[Applications of ML model in lung cancer]\(https://oup.silverchair-cdn.com/oup/backfile/Content_public/Journal/gpb/20/5/10.1016_j.gpb.2022.11.003/5/m_gpb_20_5_850_gr1.jpeg?Expires=1728536257&Signature=Itej1pt7tQygSW7QKdUXq4J4MYqtPMyUUaw81r6yvo9gxWEeiKWWBnmhophwGmGePmymYa2NFExmdfOz5ae8KzRpSP6Kqu-ZLMdowk0aAJYJIR9vyUxJZmSkd0QOH9YfFwglyEaDDoK-hUeb0f02rgbeJ7POcLILb9rt2QBqwfscbgZzr5zWGmpyAt-V2BOgfvNuLk-O38oClRHWUWGTiu4Dtu0-HuzRer841eMDZJZ8zXuZB9kz1wJ4cEvYpHFr2nxGPF4pF6Zr9Drp6kRy7kw6mTx2TuP3E4uRsCu3G6iMJZKDFAK18fz65XRHG8RTJh4SYhSzi98DfUTd0x9rHw__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA)
+!\[Applications of ML model in lung cancer]\(/Assets/picture.jpeg)
 
 Fig: Applications of ML model in lung cancer
 
