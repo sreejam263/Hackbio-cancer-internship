@@ -1,4 +1,4 @@
-**RNA-Sequencing and its importance in Cancer Research**
+## RNA-Sequencing and its importance in Cancer Research
 
 RNA Sequencing is a high-throughput gene expression profiling method that has emerged as an attractive platform for analysing genome-wide changes in gene expression. Both qualitative and quantitative investigations can be carried out on data obtained from RNA-Seq experiments. The increasing use of NGS enables a more in-depth exploration of breast cancer's complex genetics, paving the way for personalized treatments (Wang et al., 2009)
 
@@ -25,7 +25,6 @@ In conclusion, RNA-Seq offers a deep understanding of the transcriptomic changes
 - Byron, S. A., Van Keuren-Jensen, K. R., Engelthaler, D. M., Carpten, J. D., & Craig, D. W. (2016). Translating RNA sequencing into clinical diagnostics: opportunities and challenges. Nature reviews. Genetics, 17(5), 257–271. <https://doi.org/10.1038/nrg.2016.10>
 
 - Krzyszczyk, P., Acevedo, A., Davidoff, E. J., Timmins, L. M., Marrero-Berrios, I., Patel, M., White, C., Lowe, C., Sherba, J. J., Hartmanshenn, C., O'Neill, K. M., Balter, M. L., Fritz, Z. R., Androulakis, I. P., Schloss, R. S., & Yarmush, M. L. (2018). The growing role of precision and personalized medicine for cancer treatment. Technology, 6(3-4), 79–100. <https://doi.org/10.1142/S2339547818300020>
-
 -
 
 \
