@@ -21,9 +21,9 @@ This `README.md` file contains details of different stages of the Internship.
  
   ## **`Stage 2`: Programming in Biology & Data Visualization**
   + ### Task Objective: 
-    The objective of the stage-2 task was to analyze biological data and create meaningful visualizations, using R. A **Glioblastoma (GBM)** was provided for the analysis.
+  The objective of the stage-2 task was to analyze biological data and create meaningful visualizations, using R. A **Glioblastoma (GBM)** was provided for the analysis.
   + ### Task Description:
-    This task involves visualizing gene expression data of GBM using heatmaps, clustering analysis, and performing functional enrichment analysis to interpret biological significance. It includes generating color variants of heatmaps, clustering genes and samples, and creating pathway visualizations based on top enriched biological processes.
+  This task involves visualizing gene expression data of GBM using heatmaps, clustering analysis, and performing functional enrichment analysis to interpret biological significance. It includes generating color variants of heatmaps, clustering genes and samples, and creating pathway visualizations based on top enriched biological processes.
     - For complete understanding, read `Stage2` file.     
  
       
