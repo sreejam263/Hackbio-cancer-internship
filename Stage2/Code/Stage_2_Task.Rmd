@@ -1,6 +1,5 @@
 ---
 title: "Visualization, Differential Expression Analysis and Functional Enrichment Analysis of Glioblastoma dataset (Stage 2 Task)"
-author: "Sreeja Mondal"
 date: "2024-09-12"
 output: html_document
 ---
