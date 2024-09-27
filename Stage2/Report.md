@@ -19,26 +19,26 @@ Color selection is crucial for heatmap interpretability. Diverging palettes (e.g
 ![Heatmap with Diverging Color Palette](Visualizations/heatmap_with_diverging_palette.png)
 <p align="center">Fig 1: Diverging palettes </p>
 
-![Heatmap with Diverging Color Palette](Images/heatmap_sequential_pages-to-jpg-0001.jpg)
+![Heatmap with Sequential Color Palette](Visualizations/heatmap_with_sequential_palette.png)
 <p align="center">Fig 2: Sequential palettes </p>
 
 
 ### Importance of Clustering:
 - Clustering Genes Alone: Focuses on gene behavior across all samples. Useful for identifying gene co-expression patterns and functional relationships.
-![Heatmap with Clustering - Rows](Images/heatmap_row_clustering.jpg)
+![Heatmap with Clustering - Rows](Visualizations/heatmap_with_rows(genes)_clustered.png)
 <p align="center"> Fig 3: Clustering Genes Alone </p>
 
 - Clustering Samples Alone: Focuses on sample behavior across all genes. Useful for discovering sample similarities and potential subgroups.
-![Heatmap with Clustering - Columns](Images/heatmap_col_clustering.jpg)
+![Heatmap with Clustering - Columns](Visualizations/heatmap_with_columns(samples)_clustered.png)
 <p align="center"> Fig 4: Clustering Samples Alone </p>
 
 - Clustering Both: Provides a holistic view of the data, showing relationships between genes and samples simultaneously. Useful for integrated insights into gene expression patterns and sample similarities.
-![Heatmap with Clustering - both](Images/heatmap_col_row_clustering.jpg)
-<p align="center"> Fig 5: Clustering Both </p>
+![Heatmap with Clustering - both](Visualizations/heatmap_with_columns(samples)_and_rows(genes)_clustered.png)
+<p align="center"> Fig 5: Clustering Both Genes and Samples </p>
 
 
 >  ## Enriched Pathways According to Biological Process
-![Heatmap with Diverging Color Palette](Images/visualization%20of%20Top%205%20Enrichment%20Pathway.png)
+![Heatmap with Diverging Color Palette](Visualizations/Enriched_Pathways_Biological_Process.png)
 Fig:  Enriched Pathways According to Biological Process
 
 **Top 3 Enriched Pathways includes:** Glutathione Derivative Metabolic process, Glutathione Derivative Metabolic Biosynthesis Process, the Linoleic Acid Metabolic Process
