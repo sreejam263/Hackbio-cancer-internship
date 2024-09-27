@@ -3,8 +3,8 @@
 The analysis is performed on a count dataset of glioblastoma transcriptomic samples(https://raw.githubusercontent.com/HackBio-Internship/public_datasets/main/Cancer2024/glioblastoma.csv). This dataset consists of 5 samples from patients with Recurrent Tumor and 5 from patients with Primary Tumor.
 
 ## Contents
-- **[Images](./Images/)**: Visualizations of the gene expression data, including heatmaps and other relevant figures.
-- **[Data](./data/)**: Dataset used for analysis.
+- **[Visualizations](./Images/)**: Visualizations of the gene expression data, including heatmaps and other relevant figures.
+- **[GBM_dataset](./data/)**: Dataset used for analysis.
 - **[Report](./Report.md)**: Detailed report of the analysis.
 - **[Code](./code.md)**: Code for the entire analysis, starting from data preprocessing to functional enrichment Analysis
   
