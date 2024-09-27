@@ -1,0 +1,176 @@
+---
+title: "Visualization, Differential Expression Analysis and Functional Enrichment Analysis of Glioblastoma dataset (Stage 2 Task)"
+author: "Sreeja Mondal"
+date: "2024-09-12"
+output: html_document
+---
+
+The analysis is performed on a count dataset of glioblastoma transcriptomic samples(<https://raw.githubusercontent.com/HackBio-Internship/public_datasets/main/Cancer2024/glioblastoma.csv>). This dataset consists of 5 samples from patients with Recurrent Tumor and 5 from patients with Primary Tumor.
+
+## For Visualization of the heatmaps
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, results='hide'}
+library(gplots)
+library(RColorBrewer)
+```
+
+## Generating Matrix from a .csv file
+
+```{r}
+raw_counts <- read.csv("https://raw.githubusercontent.com/HackBio-Internship/public_datasets/main/Cancer2024/glioblastoma.csv", row.names = 1)
+mat <- as.matrix(raw_counts)
+#log transformation of matrix as data range is too broad
+#log_data_matrix <- log2(mat+1) 
+```
+
+## Heatmap using a diverging color palette
+
+```{r, fig.width=10, fig.height=10}
+col_palette <- colorRampPalette(brewer.pal(11, "RdBu"))(100)
+heatmap.2(x=mat, col = col_palette, 
+          density.info = 'none', dendrogram = 'both',cexCol = 0.5,
+          scale = 'row', trace = 'none')
+```
+
+## Heatmap using a sequential color palette
+
+```{r, fig.width=10, fig.height=10}
+col_palette <- colorRampPalette(brewer.pal(9, "Blues"))(100)
+heatmap.2(x=mat, col = col_palette, 
+          density.info = 'none', dendrogram = 'both',cexCol = 0.5,
+          scale = 'row', trace = 'none')
+```
+
+## Clustering Genes (rows) Alone
+
+```{r, fig.width=10, fig.height=10}
+col_palette <- colorRampPalette(brewer.pal(11, "RdBu"))(100)
+heatmap.2(x=mat, col = col_palette, 
+          density.info = 'none', dendrogram = 'row',cexCol = 0.5,
+          scale = 'row', trace = 'none',
+          Rowv = TRUE, Colv = FALSE)
+```
+
+## Clustering Samples (columns) Alone
+
+```{r,fig.width=10, fig.height=10}
+col_palette <- colorRampPalette(brewer.pal(11, "RdBu"))(100)
+heatmap.2(x=mat, col = col_palette, 
+          density.info = 'none', dendrogram = 'col',cexCol = 0.5,
+          scale = 'row', trace = 'none',
+          Rowv = FALSE, Colv = TRUE)
+```
+
+## Clustering both rows (genes) and columns (samples)
+
+```{r,fig.width=10, fig.height=10}
+col_palette <- colorRampPalette(brewer.pal(11, "RdBu"))(100)
+heatmap.2(x=mat, col = col_palette, 
+          density.info = 'none', dendrogram = 'both',cexCol = 0.5,
+          scale = 'row', trace = 'none',
+          Rowv = TRUE, Colv = TRUE)
+```
+
+## Calculating Fold Change
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, results='hide'}
+# group samples using index positions
+group1 <- c(1,2,3,4,5)
+group2 <- c(6,7,8,9,10)
+
+# separate treatment and control data
+group1_data <- raw_counts[, group1]
+group2_data <- raw_counts[, group2]
+
+# Calculate the mean for control and treatment groups
+group1_mean <- rowMeans(group1_data)
+group2_mean <- rowMeans(group2_data)
+
+# Calculate log2 fold change
+log2_fold_change = log2(group1_mean/group2_mean)
+
+log2_fold_change
+```
+
+## Calculating p-value
+
+```{r}
+# Calculate the pvalues of fold changes
+pvalues <- apply(raw_counts, 1, function(row) {t.test(row[1:5], row[6:10])$p.value})
+pvalues
+
+#Adjusting for multiple hypothesis testing (BH method)
+#p_adj <- p.adjust(pvalues, method = "BH")
+```
+
+# Volano Plot (Not needed)
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, results='hide'}
+# This is just to be sure the fold change and pvalue calculations  are properly done.
+plot(log2_fold_change, -log10(pvalues))
+```
+
+## Filtering out Significant Genes (p-value \<0.05 and fold change cutoff 2)
+
+```{r}
+# Subset for significant genes with p-value < 0.05 AND log2 fold change > 1
+significant_genes_up <- (pvalues < 0.05) & (log2_fold_change > 1)
+
+# Subset p-values and log2 fold change that meet the criteria for significantly up-regulated genes.
+filtered_pvalues_up <- pvalues[significant_genes_up]
+filtered_log2fc_up <- log2_fold_change[significant_genes_up]
+
+# Print the results
+filtered_pvalues_up
+filtered_log2fc_up
+
+# Subset for significant genes with p-value < 0.05 AND log2 fold change < -1
+significant_genes_down <- (pvalues < 0.05) & (log2_fold_change < -1)
+
+# Subset p-values and log2 fold change that meet the criteria for significantly down-regulated genes.
+filtered_pvalues_down <- pvalues[significant_genes_down]
+filtered_log2fc_down <- log2_fold_change[significant_genes_down]
+
+# Print the results
+filtered_pvalues_down
+filtered_log2fc_down
+
+```
+
+# Exporting genes, fold change and adjacent p values to CSV file
+
+```{r}
+background_genes <- data.frame(gene = names(pvalues), log2FC = as.vector(log2_fold_change), pval = as.vector(pvalues))
+DE_significantly_up_genes <- data.frame(gene = names(filtered_pvalues_up), log2FC = as.vector(filtered_log2fc_up), pval = as.vector(filtered_pvalues_up))
+DE_significantly_down_genes <- data.frame(gene = names(filtered_pvalues_down), log2FC = as.vector(filtered_log2fc_down), pval = as.vector(filtered_pvalues_down))
+head(DE_significantly_up_genes)
+# Exporting into a CSV file
+write.csv(background_genes, "background_genes.csv", row.names = FALSE)
+write.csv(DE_significantly_up_genes, "DE_significantly_up_genes.csv", row.names = FALSE)
+write.csv(DE_significantly_down_genes, "DE_significantly_down_genes.csv", row.names = FALSE)
+```
+
+# Functional Enrichment Analysis with ShinyGO
+
+Pathway Enrichment Analysis was performed separately for 10 upregulated and 2 downregulated genes. The FDR cutoff was set to 0.05 and Go Biological Process database was selected. Finally, the pathways were sorted by Enrichment FDR values.
+
+```{r}
+pathways <- read.csv("C:/Users/sreej/Downloads/enrichment.csv")
+pathways$logFDR <- -log10(pathways$Enrichment.FDR)
+```
+
+# Lollipop Plot for the top 5 Pathways
+
+```{r, echo=FALSE, fig.width=10, fig.height=10}
+
+library(ggplot2)
+# Create a lollipop plot
+ggplot(pathways, aes(x = nGenes, y = reorder(Pathway, nGenes))) +
+  geom_segment(aes(xend = 0, yend = reorder(Pathway, nGenes)), color = "grey") +
+    geom_point(aes(size = logFDR), color = "blue") +
+    scale_size_continuous(range = c(2, 10)) +  # Adjust size range for logFDR
+    labs(x = "Number of Genes", y = "Pathway", size = "-log10(FDR)",  
+       title = "Top 5 Pathways Enriched by Genes") +
+    theme_minimal() +
+    theme(axis.text.y = element_text(size = 10))
+```
